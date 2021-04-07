@@ -1,4 +1,10 @@
 class {
+  onCreate(input) {
+  this.state = { 
+  rentals: input.rentals,
+  filteredRentals: input.rentals
+  }
+  }
   handleToggle(evt) {
     const el = evt.target.nodeName === 'BUTTON' ? evt.target : evt.target.parentElement;
     const isLarge = el.classList.contains('large');
@@ -9,11 +15,26 @@ class {
       el.classList.remove('large');
       el.lastElementChild.textContent = "View Larger"
     }
+    }
+
+  filterRentals(query) {
+    /*console.log(query);*/
+    if(query.length > 1) {
+    const rentals = this.state.rentals.filter(r => r.attributes.title.toLowerCase().includes(query.toLowerCase()));
+    this.state.filteredRentals =  rentals ;
+    } else {
+    this.state.filteredRentals = this.state.rentals;
+    }
   }
 }
 
+
+<label>
+  <span>Where would you like to stay?</span>
+  <search-box on-filter('filterRentals')/>
+</label>
 <ul class="results">
-  <for|rental| of=input.rentals>
+  <for|rental| of=state.filteredRentals>
   <li>
     <article class="rental">
       <button class="image" type="button" on-click('handleToggle')>
@@ -36,7 +57,7 @@ class {
         <div class="detail bedrooms"><span>Bedrooms:</span>${rental.attributes.bedrooms}</div>
       </div>
       <div class="map">
-        <img alt="A map of Grand Old Mansion" src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-122.4194,37.7749,9/150x150@2x?access_token=pk.eyJ1IjoicmFqYXNlZ2FyYyIsImEiOiJja2w2MzV0M2MyZHJnMzBtczA3ODJsOWZ2In0.pwUodXBD7MxNMF38fs0UsQ" width="150" height="150">
+        <img alt="A map of Grand Old Mansion" src=rental.mapbox width="150" height="150">
       </div></article>
   </li>
   </for>

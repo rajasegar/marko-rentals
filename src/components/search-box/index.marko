@@ -1,0 +1,16 @@
+class {
+  onCreate() {
+  this.state = { timerId: 0, query: '' }
+  }
+
+  debounceFn(evt) {
+  this.state.query = evt.target.value;
+
+  clearTimeout(this.state.timerId);
+  this.state.timerId = setTimeout(() => {
+    this.emit('filter', this.state.query);
+  }, 500);
+  }
+}
+
+<input class="light" type="text" on-input('debounceFn')  value=state.query>

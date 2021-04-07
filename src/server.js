@@ -6,6 +6,9 @@ import homePage from "./pages/home";
 import aboutPage from "./pages/about";
 import contactPage from "./pages/contact";
 import rentalsPage from "./pages/rentals";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Configure lasso to control how JS/CSS/etc. is delivered to the browser
 const isProduction = process.env.NODE_ENV === "production";
