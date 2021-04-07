@@ -1,0 +1,10 @@
+<app-layout title=`Marko Rentals - ${input.rental.title}`>
+  <div class="jumbo">
+    <div class="right tomster">
+    </div>
+    <h2>${input.rental.title}</h2>
+    <p>Nice find! This looks like a nice place to stay near ${input.rental.city}.</p>
+    <a class="button share" href="#">Share on Twitter</a>
+  </div>
+  <rental-detailed rental=input.rental/>
+</app-layout>

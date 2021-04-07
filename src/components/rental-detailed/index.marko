@@ -1,0 +1,29 @@
+class {
+  handleToggle(evt) {
+    const el = evt.target.nodeName === 'BUTTON' ? evt.target : evt.target.parentElement;
+    const isLarge = el.classList.contains('large');
+    if(!isLarge) {
+      el.classList.add('large');
+      el.lastElementChild.textContent = "View Smaller"
+    } else {
+      el.classList.remove('large');
+      el.lastElementChild.textContent = "View Larger"
+    }
+  }
+}
+
+<article class="rental detailed">
+  <button class="image" type="button" on-click('handleToggle')>
+    <img src=input.rental.image alt=`An image of ${input.rental.title}`>
+    <small id="view-caption">View Larger</small>
+  </button>
+  <div class="details">
+    <h3>${input.rental.title}</h3>
+    <div class="detail owner"><span>Owner:</span>${input.rental.owner}</div>
+    <div class="detail type"><span>Type:</span>${input.rental.category}</div>
+    <div class="detail location"><span>Location:</span>${input.rental.city}</div>
+    <div class="detail bedrooms"><span>Bedrooms:</span>${input.rental.bedrooms}</div>
+    <div class="detail description"><p>${input.rental.description}</p></div></div>
+    <div class="map"><img class="large" alt="A map of Grand Old Mansion" src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-122.4194,37.7749,12/894x600@2x?access_token=pk.eyJ1IjoicmFqYXNlZ2FyYyIsImEiOiJja2w2MzV0M2MyZHJnMzBtczA3ODJsOWZ2In0.pwUodXBD7MxNMF38fs0UsQ" width="894" height="600">
+  </div>
+</article>
